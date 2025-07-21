@@ -1,3 +1,11 @@
+#add from two list
+l1 = [1,2,3]
+l2 = [4,5,6]
+
+result = [a+b for a,b in zip(l1,l2)]
+print(result)
+# o/p = [5, 7, 9]
+
 #find third_large value from list.
 def Thired_large(val):
     fisrt,second,third = float('-inf'),float('-inf'),float('-inf')
@@ -74,13 +82,30 @@ else:
 # "aabbccaadbc"
 # output = "a4b3c3d1"
 #=======================================================
-# from collections import Counter
+from collections import Counter
 
 str1 = "aabbccaadbc"
 count = Counter(str1)
 
 output = "".join(f"{key}{val}" for key,val in count.items())
 print(output)
+
+
+# "aaabbbcc" becomes "a3b3c2"
+input_str = "aabbccaadbc"
+output = {}
+
+for ch in input_str:
+    if ch in output:
+        output[ch] +=1
+    else:
+        output[ch] = 1
+        
+print(output)
+
+out = "".join(f"{key}{count}" for key,count in output.items())
+print(out)
+
 
 
 
@@ -258,4 +283,131 @@ for i in l1:
         l2.append(i)
 print(list(set(l2)))
 
+
+#flatten json
+def xyz(y, parent_key='', sep='.'):
+    items = []
+    for k, v in y.items():
+        new_key = f"{parent_key}{sep}{k}" if parent_key else k
+        if isinstance(v, dict):
+            items.extend(xyz(v, new_key, sep=sep).items())
+        else:
+            items.append((new_key, v))
+    return dict(items)
+
+
+data = {"name":"jaya",
+        "city":
+         {"place":{"delhi","bhopal"},
+         "pincode":{"120","131"}
+         },
+         "contact":{"email":"j@gmail","mobile":"123456"}
+        }
+
+xyz(data)
+# # {city-place: delhi,city-pincode:}
+
+
+st = "CHENNAI SUPER KING"
+#o/p = 'KING SUPER CHENNAI'
+#outpu =  IANNEHC RERUS GNIK
+
+li = st.split(" ")
+l2 = []
+for i in li:
+    x = i[::-1]
+    print(x)
+    l2.append(x)
+      
+print("".join(l2))
+
+#third max 
+############################
+def third_max(s1):
+    if len(s1) < 2:
+        return max(s1)
+    else:
+        first,second,third = 0,0,0
+        for val in s1:
+            if val > first:
+                third = second
+                second = first
+                first = val
+            elif val > second & second != first:
+                third = second
+                second = val
+            else:
+                print(val,first,second,third)
+                third = val
+                
+    return first,second,third
+ 
+l1 = [3,2,1,5,7,7,5]
+# l1 = [1,2]
+# l1 = [3,2,1]
+# s1 = set(l1) 
+print(third_max(set(l1)))
+
+#multiple inheritance
+class ABC():
+    def car(self):
+        print("maruti")        
+
+class XYZ():
+    def car(self):
+        print("volvo")
+
+class Multiple(ABC,XYZ):
+    pass
+        
+obj = Multiple()
+print(Multiple.__mro__)
+obj.car()
+
+# o/p = 
+'''Because of Method Resolution Order (MRO).
+Python searches methods from left to right in the inheritance list. In your class:
+class Multiple(ABC, XYZ)
+Python first looks in ABC, then in XYZ.
+So ABC.car() is called first.'''
+
+
+# Input: 
+# # Output: arr3[] = {1, 2, 3, 4, 4, 5, 6, 8}
+arr1 = [1, 3, 4, 5]
+arr2 = [2, 4, 6, 8]
+l3 = zip(arr1,arr2)
+arr3 = []
+for x,y in l3:
+    l1 = [x,y]
+    arr3.extend(l1)
+    
+print(arr3)
+
+
+'''removing duplicates and keeping the first occurrence of each character'''
+inp2 ="abcssbbccff"
+# Result=abc
+result = ""
+for val in inp2:
+    if val not in result:
+        result += result + val
+
+print(f"result {result}")
+
+
+# list faltten
+def flatten_list(nested):
+    result = []
+    for item in nested:
+        if isinstance(item, list):
+            result.extend(flatten_list(item))  # Recursively flatten
+        else:
+            result.append(item)
+    return result
+
+# Test input
+nested_list = [1, 2, [3, [[6, 7], 4], [5, 6]]]
+flat = flatten_list(nested_list)
+print(flat)  # Output: [1, 2, 3, 6, 7, 4, 5, 6]
 
