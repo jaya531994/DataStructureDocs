@@ -15,7 +15,7 @@ class LinkedList:
         while temp_node is not None:
             result +=str(temp_node.value)
             if temp_node.next is not None:
-                result += ' ->'
+                result += ','
             temp_node = temp_node.next
         return result
 
@@ -42,6 +42,9 @@ class LinkedList:
         
         self.length +=1
 
+    #10->20->30->40
+    #10->20->{50}->30->40
+    #value = 50 , index=2
     def insert(self,value,index):
         new_node = Node(value)
         if index < 0  and index > self.length:
@@ -52,7 +55,12 @@ class LinkedList:
         else:
             temp_node = self.head
             for _ in range(index-1):
-                pass
+                temp_node = temp_node.next
+            new_node.next = temp_node.next
+            temp_node.next = new_node
+        
+        self.length +=1
+        return True
 
     
     #Traversal of linked list
@@ -133,15 +141,15 @@ LL= LinkedList()
 LL.append(10)
 LL.append(20)
 LL.prepand(50)
-LL.insert(20,3)
-print(LL.Travers())
-print(LL.Search(20))
-print(LL.Get(0))
-# print(LL.Set(0,70))
-print(LL.pop_first())
-print(LL.pop())
-print(LL.Remove(1))
-print(LL.delete_all())
+LL.insert(60,1)
+# print(LL.Travers())
+# print(LL.Search(20))
+# print(LL.Get(0))
+# # print(LL.Set(0,70))
+# print(LL.pop_first())
+# print(LL.pop())
+# print(LL.Remove(1))
+# print(LL.delete_all())
 print(LL)
 
 
