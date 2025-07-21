@@ -1,5 +1,6 @@
 import math
-def binarysearch(arr1, val):
+def binarysearch(arr2, val):
+    arr1 = sort(arr2)
     start = 0
     end = len(arr1) -1
     middle = math.floor((start+end)/2)
