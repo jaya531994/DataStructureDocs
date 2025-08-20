@@ -411,3 +411,16 @@ nested_list = [1, 2, [3, [[6, 7], 4], [5, 6]]]
 flat = flatten_list(nested_list)
 print(flat)  # Output: [1, 2, 3, 6, 7, 4, 5, 6]
 
+
+'''Reverse words'''
+str1 = "Let me know if you're trying"
+words = str1.split()
+
+reversed_words = []
+for word in words:
+    reversed_words.insert(0, word)  # inserts at index 0
+
+output = " ".join(reversed_words)
+print(output)
+
+
