@@ -14,10 +14,10 @@ def Thired_large(val):
             third = second
             second = fisrt
             fisrt = num
-        elif second > num & second != fisrt:
+        elif num > second and second != fisrt:
             third = second
             second = num
-        else:
+        elif num > third and num !=second and num !=fisrt:
             third = num
 
     return third
@@ -422,5 +422,6 @@ for word in words:
 
 output = " ".join(reversed_words)
 print(output)
+
 
 
